@@ -81,6 +81,20 @@ Backend va frontend **alohida** deploy qilinadi: server statik fayl serve qilmay
 
 1. **Environment** (`server/.env`): `PORT=3001`, `CORS_ORIGIN` — frontend domeni (masalan `https://kinofan.vercel.app`). Bir nechta domen: vergul bilan yoki hujjatda ko‘rsatilgan format.
 
+---
+
+## Deploy checklist (frontend)
+1. Ensure `vercel.json` is present in the repo root (SPA fallback for `/room/:id`).
+2. Set these environment variables in Vercel (Project Settings → Environment Variables):
+   - `VITE_PUBLIC_URL` — public URL of the deployed frontend (recommended)
+   - `VITE_API_URL` — full backend URL (leave empty if backend is served from same domain)
+   - `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` (if using Supabase)
+3. Verify locally: `npm run build && npx serve dist -s` then `curl -I http://localhost:5000/room/TESTID` → should return 200.
+4. PRs will run the build check (`ci:build`) — fix build errors before merging.
+
+If you deploy to Vercel the repo already contains `vercel.json` which rewrites unknown routes to `index.html` so client-side routes (eg. `/room/:id`) don't return 404.
+
+
 ⚠️ For Vercel deployments: this repo includes `vercel.json` which rewrites unknown routes to `index.html` so client-side routes like `/room/:id` don't return 404. This prevents third-party scripts (e.g. link-checkers) from producing `HEAD /room/... 404` in the browser console.
 
 2. **Deploy**: Railway, Render, Fly.io yoki boshqa Node hosting. Faqat `server/` papkasi (client/dist serve qilinmaydi).

@@ -1,0 +1,30 @@
+name: CI — build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install deps
+        run: npm ci
+      - name: Quick env (prevents missing-public-url warnings)
+        run: echo "VITE_PUBLIC_URL=https://example.com" >> $GITHUB_ENV
+      - name: Run deploy checks
+        run: npm run check-deploy
+      - name: Build
+        run: npm run build
+      - name: Upload build artifacts (for debugging)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
