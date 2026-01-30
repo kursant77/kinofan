@@ -2,11 +2,7 @@
   "version": 3,
   "routes": [
     { "handle": "filesystem" },
-
-    /* Keep API routes working as normal */
     { "src": "/api/(.*)", "dest": "/api/$1" },
-
-    /* SPA fallback: serve index.html for all other routes (prevents 404 on /room/:id) */
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
