@@ -7,8 +7,11 @@ const canShare = typeof navigator !== 'undefined' && navigator.share;
 export default function InviteButton({ roomId }) {
   const [copied, setCopied] = useState(false);
 
+  const [lastUrl, setLastUrl] = useState('');
+
   async function handleCopy() {
     const url = getRoomUrl(roomId);
+    setLastUrl(url);
     try {
       await navigator.clipboard.writeText(url);
       setCopied(true);
@@ -20,6 +23,7 @@ export default function InviteButton({ roomId }) {
 
   async function handleShare() {
     const url = getRoomUrl(roomId);
+    setLastUrl(url);
     try {
       await navigator.share({
         title: 'Kinofan',
@@ -49,6 +53,15 @@ export default function InviteButton({ roomId }) {
       >
         {copied ? 'Nusxalandi!' : 'Invite'}
       </button>
+
+      {lastUrl && (
+        <div className={styles.invitePreview} aria-live="polite">
+          <small style={{ opacity: 0.85 }}>Link:</small>
+          <div>
+            <a href={lastUrl} target="_blank" rel="noopener noreferrer">{lastUrl}</a>
+          </div>
+        </div>
+      )}
     </>
   );
 }

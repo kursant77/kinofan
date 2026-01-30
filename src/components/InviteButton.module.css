@@ -26,3 +26,10 @@
 .buttonCopied:hover {
   background: #16a34a;
 }
+
+.invitePreview {
+  margin-top: 8px;
+  font-size: 12px;
+  word-break: break-all;
+  color: rgba(0,0,0,0.75);
+}

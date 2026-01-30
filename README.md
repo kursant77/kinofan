@@ -81,6 +81,8 @@ Backend va frontend **alohida** deploy qilinadi: server statik fayl serve qilmay
 
 1. **Environment** (`server/.env`): `PORT=3001`, `CORS_ORIGIN` — frontend domeni (masalan `https://kinofan.vercel.app`). Bir nechta domen: vergul bilan yoki hujjatda ko‘rsatilgan format.
 
+⚠️ For Vercel deployments: this repo includes `vercel.json` which rewrites unknown routes to `index.html` so client-side routes like `/room/:id` don't return 404. This prevents third-party scripts (e.g. link-checkers) from producing `HEAD /room/... 404` in the browser console.
+
 2. **Deploy**: Railway, Render, Fly.io yoki boshqa Node hosting. Faqat `server/` papkasi (client/dist serve qilinmaydi).
 
 ### HTTPS

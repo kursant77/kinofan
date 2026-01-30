@@ -1,9 +1,15 @@
 import { nanoid } from 'nanoid';
 import { supabase } from './supabase';
 
+/**
+ * Build a canonical public URL for a room.
+ * - Prefer VITE_PUBLIC_URL when set (useful for production deployments)
+ * - Fallback to window.location.origin when not available (dev)
+ * - Always normalise trailing slashes
+ */
 export function getRoomUrl(roomId) {
-  const base = window.location.origin + (window.location.pathname.replace(/\/$/, '') || '');
-  return `${base}/room/${roomId}`;
+  const publicUrl = (import.meta.env.VITE_PUBLIC_URL || window.location.origin).replace(/\/$/, '');
+  return `${publicUrl}/room/${roomId}`;
 }
 
 /** Yangi xona id (Supabase rejimida darhol navigatsiya uchun) */

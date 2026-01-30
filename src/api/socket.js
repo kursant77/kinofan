@@ -10,9 +10,13 @@ export function createSocket() {
   });
 }
 
+/**
+ * Build a canonical public URL for a room (used by sharing/links).
+ * Prefer VITE_PUBLIC_URL when available so links work from CI/CD domain.
+ */
 export function getRoomUrl(roomId) {
-  const base = window.location.origin + (window.location.pathname.replace(/\/$/, '') || '');
-  return `${base}/room/${roomId}`;
+  const publicUrl = (import.meta.env.VITE_PUBLIC_URL || window.location.origin).replace(/\/$/, '');
+  return `${publicUrl}/room/${roomId}`;
 }
 
 export async function createRoom() {
