@@ -1,0 +1,28 @@
+.button {
+  padding: var(--space-12) var(--space-16);
+  min-height: var(--touch-min);
+  min-width: 100px;
+  font-weight: var(--font-medium);
+  font-size: var(--text-sm);
+  color: #fff;
+  border-radius: var(--radius-md);
+  background: #3b82f6;
+  transition: background 0.15s ease;
+}
+
+.button:hover {
+  background: #2563eb;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-accent-focus);
+  outline-offset: 2px;
+}
+
+.buttonCopied {
+  background: var(--color-success);
+}
+
+.buttonCopied:hover {
+  background: #16a34a;
+}

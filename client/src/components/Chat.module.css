@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 200px;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .container {
+    min-height: 300px;
+  }
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.placeholder {
+  color: var(--color-muted-dark);
+  font-size: var(--text-sm);
+}
+
+.msgMe {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-self: flex-end;
+  max-width: 85%;
+  padding: var(--space-8) var(--space-12);
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: var(--radius-lg);
+  border-bottom-right-radius: 4px;
+}
+
+.msgOther {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-self: flex-start;
+  max-width: 85%;
+  padding: var(--space-8) var(--space-12);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  border-bottom-left-radius: 4px;
+}
+
+.msgMeta {
+  font-size: var(--text-xs);
+  color: var(--color-muted-dark);
+}
+
+.msgMe .msgMeta {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.msgText {
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  word-break: break-word;
+}
+
+.msgMe .msgText {
+  color: #fff;
+}
+
+@media (min-width: 640px) {
+  .msgText {
+    font-size: var(--text-base);
+  }
+}
+
+.form {
+  display: flex;
+  gap: var(--space-8);
+  padding: var(--space-8);
+  border-top: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-12);
+  min-height: var(--touch-min);
+  background: var(--color-surface-elevated);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-size: 16px; /* avoid zoom on iOS */
+}
+
+.input::placeholder {
+  color: var(--color-muted-dark);
+}
+
+.input:focus {
+  border-color: var(--color-accent);
+}
+
+.send {
+  padding: var(--space-12) var(--space-16);
+  min-height: var(--touch-min);
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: var(--radius-md);
+  font-weight: var(--font-medium);
+  transition: background 0.15s ease;
+}
+
+.send:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+.send:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
