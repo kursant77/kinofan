@@ -54,14 +54,14 @@ export default function InviteButton({ roomId }) {
         {copied ? 'Nusxalandi!' : 'Invite'}
       </button>
 
-      {lastUrl && (
+      {/* {lastUrl && (
         <div className={styles.invitePreview} aria-live="polite">
           <small style={{ opacity: 0.85 }}>Link:</small>
           <div>
             <a href={lastUrl} target="_blank" rel="noopener noreferrer">{lastUrl}</a>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 }
